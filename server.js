@@ -1,5 +1,8 @@
 const express = require('express');
 const app = express();
+const db = require('./db');
+const mongoose = require('mongoose');
+const Tweet = mongoose.model('Tweet');
 const amqplib = require('amqplib');
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3000;
@@ -47,6 +50,32 @@ app.post('/doTask', (req,res) => {
     }
     res.json(response);
   });
+});
+
+app.get('/getTweet', (req,res) => {
+  //console.log("Get Tweet request");
+  Tweet.where().findOneAndRemove((err, doc, raw_result) => {
+
+    if(err){
+      console.error(`Error : ${JSON.stringify(err, null, 2)} while getting tweet from database`);
+      const response = {
+        status: "error",
+        error: err
+      }
+      res.json(response)
+      return;
+    }
+
+    //console.log(doc);
+
+    const response = {
+      status: "success",
+      doc: doc
+    };
+
+    res.json(response)
+  });
+
 });
 
 app.listen(PORT, () => {
