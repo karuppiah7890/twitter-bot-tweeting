@@ -71,7 +71,7 @@ module.exports = {
 
       post(beck_api_key, screen_names_list, text_to_tweet, status_id)
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         const next_text_to_tweet = inputLines[1];
         screen_names_list = [];
         screen_names_list.push(screen_name);
@@ -79,7 +79,7 @@ module.exports = {
         return post(cathy_api_key, screen_names_list, next_text_to_tweet, result.id_str);
       })
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         console.log(`\n\n\nTweeted to https://twitter.com/${screen_name}/status/${status_id}.
           Tweet : ${tweet_text}. Retweet count : ${retweet_count}. Favorite : ${favorite_count}.`);
 
