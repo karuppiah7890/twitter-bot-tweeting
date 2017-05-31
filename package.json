@@ -14,8 +14,10 @@
   "license": "MIT",
   "dependencies": {
     "amqplib": "^0.5.1",
+    "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "mongoose": "^4.10.4",
+    "twit": "^2.2.5",
     "twitter": "^1.7.0"
   }
 }
